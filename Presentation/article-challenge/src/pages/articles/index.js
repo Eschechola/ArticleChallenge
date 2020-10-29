@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../../components/header'
 
@@ -7,14 +7,6 @@ import './styles.css';
 
 class Articles extends Component
 {
-    constructor(props){
-        super();
-        
-        if(localStorage.getItem("user") == null){
-            props.history.push('/');
-        }
-    }
-
     state = {
         user: JSON.parse(localStorage.getItem('user')),
         articles: []
@@ -37,6 +29,10 @@ class Articles extends Component
     }
 
     render(){
+        if (localStorage.getItem('user') == null) {
+            return <Redirect to={{ pathname: '/', state: { from: this.props.location } }} />
+        }
+        
         const usernameMessage = 'Olá, ' + this.state.user.data.name; 
         
         var articles = this.state.articles;

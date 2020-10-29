@@ -26,7 +26,7 @@ body {
     position: relative;
     width: 400px;
     max-width: 90vw;
-    height: 600px;
+    height: 600px !important;
     max-height: 90vh;
     background: #fff;
     border-radius: 5px;

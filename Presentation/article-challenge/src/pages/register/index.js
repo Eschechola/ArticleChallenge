@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import logo from '../../images/login-image.svg'
 import axios from 'axios';
 
@@ -69,9 +69,13 @@ class Register extends Component
             display: "block"
         }
 
+        if (localStorage.getItem('user') != null) {
+            return <Redirect to={{ pathname: '/artigos', state: { from: this.props.location } }} />
+        }
+
         return( 
             <section class="login">
-                <div class="login-content">
+                <div class="register-content">
                     <img class="logo" src={logo} alt="Logo" />
 
                     <form>

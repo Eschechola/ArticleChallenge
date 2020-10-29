@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import logo from '../../images/login-image.svg'
 import axios from 'axios';
 
@@ -16,10 +16,6 @@ class Main extends Component
 
             inputError: false,
             inputMessage: ""
-        }
-
-        if(localStorage.getItem("user") != null){
-            props.history.push('/artigos');
         }
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -62,6 +58,10 @@ class Main extends Component
             display: "block"
         }
 
+        if (localStorage.getItem('user') != null) {
+            return <Redirect to={{ pathname: '/artigos', state: { from: this.props.location } }} />
+        }
+
         return( 
             <section class="login">
                 <div class="login-content">
@@ -74,7 +74,7 @@ class Main extends Component
 
                         <input type="password" class="login-input" placeholder="Digite sua senha" required value={this.state.password} onChange={this.handlePasswordChange} />
 
-                        <h5>Ainda não tem acesso? <Link to={`/cadastro/`} class="register-url">Acessar</Link></h5>
+                        <h5>Ainda não tem acesso? <Link to={`/cadastro/`} class="register-url">Cadastre-se</Link></h5>
 
                         <span class="error" style={this.state.inputError ? displayBlock : displayNone}>
                             {this.state.inputMessage}
