@@ -1,0 +1,115 @@
+body {
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+.login {
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    position: absolute;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+}
+
+.logo {
+    width: 30%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 15%;
+}
+
+.login-content {
+    position: relative;
+    width: 400px;
+    max-width: 90vw;
+    height: 700px;
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, .1);
+}
+
+.login-content h4 {
+    font-size: 2rem;
+    margin-top: 15%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #EB5795;
+}
+
+.login-content h5 {
+    width: 90%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 4%;
+    color: dimgray;
+}
+
+.login-input {
+    margin-top: 15%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    padding: 12px;
+    padding-left: 2px;
+    border: none;
+    border-bottom: 2px solid #EB5795;
+    font-size: 1rem;
+    transition: 0.5s;
+}
+
+.login-input:focus {
+    border-color: darkslateblue;
+    transition: 0.5s;
+}
+
+.btn-send {
+    margin-top: 25%;
+    min-width: 80%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    color: white;
+    background: #EB5795;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.btn-send:hover {
+    background: #803052;
+    transition: .5s;
+}
+
+.register-url {
+    text-decoration: none;
+    overflow: hidden;
+    color: #EB5795;
+    transition: .5s;
+}
+
+.register-url:hover {
+    color: #803052;
+    transition: .5s;
+    text-decoration: underline;
+}
+
+.error {
+    margin-top: 7%;
+    position: absolute;
+    width: 90%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: #b50000;
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
+}

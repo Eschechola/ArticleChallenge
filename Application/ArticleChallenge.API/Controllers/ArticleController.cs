@@ -64,6 +64,28 @@ namespace ArticleChallenge.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("/api/v1/articles/get-like/{userId:long}/{articleId:long}")]
+        public async Task<IActionResult> GetLike(long userId, long articleId)
+        {
+            try
+            {
+                return Ok(new ResultViewModel(
+                                message: "Like encontrado com sucesso!",
+                                success: true,
+                                data: await _articleService.GetLike(userId, articleId)
+                        ));
+            }
+            catch (DomainException ex)
+            {
+                return StatusCode(400, ResultTemplates.DomainError(ex.Message));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, ResultTemplates.InternalServerError());
+            }
+        }
+
         [HttpPost]
         [Route("/api/v1/articles/create")]
         public async Task<IActionResult> Create([FromBody]ArticleDTO articleDTO)

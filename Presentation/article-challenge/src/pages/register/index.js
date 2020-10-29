@@ -5,12 +5,13 @@ import axios from 'axios';
 
 import './styles.css';
 
-class Main extends Component
+class Register extends Component
 {
     constructor(props) {
         super();
 
         this.state = {
+            name: "",
             email: "",
             password: "",
 
@@ -22,9 +23,14 @@ class Main extends Component
             props.history.push('/artigos');
         }
 
+        this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    handleNameChange(e){
+        this.setState({name: e.target.value});
     }
 
     handleEmailChange(e){
@@ -37,7 +43,7 @@ class Main extends Component
 
     handleLogin = async () => {
         await axios.post(
-            'https://localhost:44392/api/v1/user/authenticate',
+            'https://localhost:44392/api/v1/user/create',
             this.state
         )
         .then(res => {
@@ -48,10 +54,11 @@ class Main extends Component
         })
         .catch(err => {
             this.setState({inputError: true});
-            this.setState({inputMessage: "Usuário e/ou senha estão inválido(s)."});
+            this.setState({inputMessage: "Corrija os campos e tente novamente."});
         });
     }
-    
+
+
     render(){
 
         const displayNone = {
@@ -68,19 +75,24 @@ class Main extends Component
                     <img class="logo" src={logo} alt="Logo" />
 
                     <form>
-                        <input type="text" class="login-input" placeholder="Digite seu email" required value={this.state.email} onChange={this.handleEmailChange} />
+
+                        <input name="name" type="text" class="login-input" placeholder="Digite seu nome" required value={this.state.name} onChange={this.handleNameChange} />
 
                         <br/>
 
-                        <input type="password" class="login-input" placeholder="Digite sua senha" required value={this.state.password} onChange={this.handlePasswordChange} />
+                        <input name="email" type="text" class="login-input" placeholder="Digite seu email" required value={this.state.email} onChange={this.handleEmailChange} />                        
 
-                        <h5>Ainda não tem acesso? <Link to={`/cadastro/`} class="register-url">Acessar</Link></h5>
+                        <br />
+
+                        <input name="password" type="password" class="login-input" placeholder="Digite sua senha" required value={this.state.password} onChange={this.handlePasswordChange} />
+                        
+                        <h5>Ja tem uma conta? <Link to={'/'} class="register-url">Logue</Link></h5>
 
                         <span class="error" style={this.state.inputError ? displayBlock : displayNone}>
                             {this.state.inputMessage}
                         </span>
 
-                        <button type="button" class="btn-send" onClick={this.handleLogin}>Login</button>
+                        <button type="button" class="btn-send" onClick={this.handleLogin}>Entrar</button>
                     </form>
                 </div>
             </section>
@@ -88,4 +100,4 @@ class Main extends Component
     }
 }
 
-export default Main;
+export default Register;

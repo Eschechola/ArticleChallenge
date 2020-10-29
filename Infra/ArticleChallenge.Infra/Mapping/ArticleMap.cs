@@ -29,6 +29,12 @@ namespace ArticleChallenge.Infra.Mapping
 
             builder.Property(a => a.Text)
                 .IsRequired()
+                .HasMaxLength(300)
+                .HasColumnName("VARCHAR(300)")
+                .HasColumnName("description");
+
+            builder.Property(a => a.Text)
+                .IsRequired()
                 .HasMaxLength(8000)
                 .HasColumnName("VARCHAR(MAX)")
                 .HasColumnName("text");

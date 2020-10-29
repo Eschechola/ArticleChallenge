@@ -9,6 +9,7 @@ namespace ArticleChallenge.Services.Interfaces
         Task<ArticleDTO> Create(ArticleDTO articleDTO);
         Task<ArticleDTO> Get(long id);
         Task<IList<ArticleDTO>> Get();
+        Task<ArticleLikeDTO> GetLike(long userId, long articleId);
         Task<long> AddLike(ArticleLikeDTO articleLikeDTO);
         Task<long> RemoveLike(ArticleLikeDTO articleLikeDTO);
     }

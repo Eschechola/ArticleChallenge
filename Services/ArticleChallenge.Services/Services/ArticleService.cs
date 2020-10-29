@@ -94,5 +94,12 @@ namespace ArticleChallenge.Services
 
             return article.MountLikes;
         }
+
+        public async Task<ArticleLikeDTO> GetLike(long userId, long articleId)
+        {
+            var like = await _articleRepository.GetLike(articleId, userId);
+
+            return _mapper.Map<ArticleLikeDTO>(like);
+        }
     }
 }
